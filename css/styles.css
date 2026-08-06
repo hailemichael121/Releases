@@ -125,16 +125,16 @@ header {
   letter-spacing: -0.02em;
 }
 
-/* Enlarged & Prominent Best Archaeological Logo Icon */
+/* Creamy Browny-White Background Archaeological Logo Icon */
 .brand-icon-img {
   width: 48px;
   height: 48px;
   border-radius: 12px;
   object-fit: cover;
-  border: 1.5px solid var(--border-active);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid var(--border-color);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
-  background: #000;
+  background: #f5eedc;
 }
 
 .brand-logo:hover .brand-icon-img {
@@ -244,6 +244,7 @@ header {
   border-radius: 6px;
   object-fit: cover;
   border: 1px solid var(--border-color);
+  background: #f5eedc;
 }
 
 .hero-title {
