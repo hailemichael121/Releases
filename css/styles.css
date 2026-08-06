@@ -124,15 +124,13 @@ header {
   letter-spacing: -0.02em;
 }
 
-.brand-icon {
-  width: 32px;
-  height: 32px;
+.brand-icon-img {
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-pill);
-  background: var(--text-main);
-  color: var(--accent-inverse);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .nav-controls {
@@ -215,7 +213,9 @@ header {
 }
 
 .tag-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   background: var(--badge-bg);
@@ -360,7 +360,7 @@ header {
   overflow: hidden;
 }
 
-/* Ambient Subtle Brand Glow in Corner (No top borders) */
+/* Ambient Subtle Brand Glow in Corner */
 .app-card::after {
   content: '';
   position: absolute;
