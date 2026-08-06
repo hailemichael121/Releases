@@ -87,6 +87,28 @@ body::before {
   opacity: 0.6;
 }
 
+/* Large Transparent Left Background Watermark */
+.page-watermark {
+  position: fixed;
+  left: -90px;
+  bottom: -40px;
+  width: 46vw;
+  max-width: 520px;
+  height: auto;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.09;
+  filter: invert(1) brightness(1.6);
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="light"] .page-watermark {
+  filter: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
 code, pre, .mono-text {
   font-family: 'JetBrains Mono', monospace;
 }
@@ -221,30 +243,6 @@ header {
 /* Hero Section */
 .hero {
   padding: 38px 0 16px;
-}
-
-.tag-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 16px;
-  border-radius: var(--radius-pill);
-  background: var(--badge-bg);
-  color: var(--text-muted);
-  border: 1px solid var(--border-color);
-  font-size: 0.78rem;
-  font-weight: 600;
-  font-family: 'JetBrains Mono', monospace;
-  margin-bottom: 14px;
-}
-
-.tag-badge-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  object-fit: cover;
-  border: 1px solid var(--border-color);
-  background: #f5eedc;
 }
 
 .hero-title {
@@ -661,6 +659,13 @@ footer a {
   .brand-icon-img {
     width: 44px;
     height: 44px;
+  }
+
+  .page-watermark {
+    width: 70vw;
+    left: -50px;
+    bottom: -20px;
+    opacity: 0.06;
   }
 
   /* Compact Icon-Only Buttons on Top Right in Mobile */
