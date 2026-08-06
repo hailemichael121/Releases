@@ -2,38 +2,86 @@ let catalogData = null;
 let currentFilter = 'all';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  initTheme();
   await loadCatalogData();
   setupEventListeners();
   checkHashNavigation();
 });
 
+function initTheme() {
+  const savedTheme = localStorage.getItem('releases_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('releases_theme', next);
+  updateThemeIcon(next);
+}
+
+function updateThemeIcon(theme) {
+  const btn = document.getElementById('themeToggleBtn');
+  if (btn) {
+    btn.innerHTML = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+  }
+}
+
 async function loadCatalogData() {
+  // First check if global window.APP_CATALOG script fallback exists
+  if (window.APP_CATALOG && window.APP_CATALOG.apps) {
+    catalogData = window.APP_CATALOG;
+  }
+  
+  // Try fetching JSON if running on http server
   try {
     const res = await fetch('./data/apps.json');
-    catalogData = await res.json();
-    updateStats(catalogData);
+    if (res.ok) {
+      catalogData = await res.json();
+    }
+  } catch (err) {
+    // If fetch failed (e.g. file:// CORS restriction), catalogData remains window.APP_CATALOG
+    console.log('Serving from bundled local data catalog.');
+  }
+
+  if (catalogData && catalogData.apps) {
+    renderRealStats(catalogData);
     renderCategoryFilters(catalogData.apps);
     renderAppGrid(catalogData.apps);
-  } catch (err) {
-    console.error('Failed to load apps catalog:', err);
+  } else {
     document.getElementById('appGrid').innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; color: #ef4444; padding: 40px;">
-        <h3>Unable to load release data.</h3>
-        <p>Please ensure data/apps.json exists and is valid JSON.</p>
+        <h3>Unable to load catalog data.</h3>
       </div>
     `;
   }
 }
 
-function updateStats(data) {
+function renderRealStats(data) {
   const totalApps = data.apps.length;
-  const totalDownloads = data.apps.reduce((acc, app) => {
-    return acc + (app.releases[0]?.downloadCount || 0);
-  }, 0);
-  
+  let totalBuilds = 0;
+  let totalMbSum = 0;
+  let latestDate = "2026-08-06";
+
+  data.apps.forEach(app => {
+    totalBuilds += (app.releases || []).length;
+    (app.releases || []).forEach(rel => {
+      if (rel.fileSize) {
+        const mb = parseFloat(rel.fileSize);
+        if (!isNaN(mb)) totalMbSum += mb;
+      }
+      if (rel.releaseDate && rel.releaseDate > latestDate) {
+        latestDate = rel.releaseDate;
+      }
+    });
+  });
+
   document.getElementById('statTotalApps').textContent = totalApps;
-  document.getElementById('statTotalDownloads').textContent = totalDownloads.toLocaleString() + '+';
-  document.getElementById('statLastUpdate').textContent = 'Today';
+  document.getElementById('statTotalBuilds').textContent = totalBuilds;
+  document.getElementById('statTotalSize').textContent = `${totalMbSum.toFixed(1)} MB`;
+  document.getElementById('statLastUpdate').textContent = latestDate;
 }
 
 function renderCategoryFilters(apps) {
@@ -41,14 +89,14 @@ function renderCategoryFilters(apps) {
   const container = document.getElementById('categoryFilters');
   
   container.innerHTML = categories.map(cat => `
-    <button class="filter-btn ${cat === currentFilter ? 'active' : ''}" data-category="${cat}">
-      ${cat === 'all' ? 'All Releases' : cat}
+    <button class="filter-chip ${cat === currentFilter ? 'active' : ''}" data-category="${cat}">
+      ${cat === 'all' ? 'All Applications' : cat}
     </button>
   `).join('');
 
-  container.querySelectorAll('.filter-btn').forEach(btn => {
+  container.querySelectorAll('.filter-chip').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      container.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
       currentFilter = e.target.dataset.category;
       filterAndRenderApps();
@@ -61,7 +109,7 @@ function renderAppGrid(apps) {
   if (!apps || apps.length === 0) {
     container.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">
-        <p>No application releases matched your query.</p>
+        <p>No matching applications found.</p>
       </div>
     `;
     return;
@@ -72,28 +120,28 @@ function renderAppGrid(apps) {
     return `
       <div class="app-card" id="card-${app.id}">
         <div>
-          <div class="app-header">
-            <div class="app-icon">${app.icon}</div>
-            <div class="app-title-wrapper">
-              <h3 class="app-title">${app.name}</h3>
-              <span class="app-category-badge">${app.category}</span>
+          <div class="app-head">
+            <div class="app-icon-box">${app.icon}</div>
+            <div>
+              <h3 class="app-name">${app.name}</h3>
+              <span class="app-cat">${app.category}</span>
             </div>
           </div>
-          <p class="app-tagline">${app.tagline}</p>
+          <p class="app-desc">${app.tagline}</p>
           
-          <div class="app-meta-tags">
-            <span class="meta-chip">🏷️ ${latest.version || 'v1.0.0'}</span>
-            <span class="meta-chip">📦 ${latest.fileSize || 'APK'}</span>
-            <span class="meta-chip">📅 ${latest.releaseDate || '2026'}</span>
+          <div class="app-details-list">
+            <span>Tag: <strong>${latest.version || 'v1.0.0'}</strong></span>
+            <span>•</span>
+            <span>Size: <strong>${latest.fileSize || 'APK'}</strong></span>
           </div>
         </div>
 
-        <div class="app-actions">
-          <a href="${latest.apkPath}" download class="btn btn-emerald">
-            <span>⬇️ Download APK</span>
+        <div class="app-card-actions">
+          <a href="${latest.apkPath}" download class="btn btn-solid">
+            ⬇️ Download APK
           </a>
-          <button class="btn btn-glass" onclick="openSingleApkModal('${app.id}')">
-            <span>🔗 Details & Share</span>
+          <button class="btn" onclick="openSingleApkModal('${app.id}')">
+            🔗 Share APK
           </button>
         </div>
       </div>
@@ -104,20 +152,17 @@ function renderAppGrid(apps) {
 function setupEventListeners() {
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
-    searchInput.addEventListener('input', () => {
-      filterAndRenderApps();
-    });
+    searchInput.addEventListener('input', filterAndRenderApps);
   }
 
   window.addEventListener('hashchange', checkHashNavigation);
 
-  // Close modal when clicking overlay background
-  const modal = document.getElementById('singleApkModal');
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeSingleApkModal();
-    }
-  });
+  const backdrop = document.getElementById('singleApkModal');
+  if (backdrop) {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeSingleApkModal();
+    });
+  }
 }
 
 function filterAndRenderApps() {
@@ -154,74 +199,53 @@ function openSingleApkModal(appId) {
 
   const latest = app.releases[0] || {};
   const shareUrl = `${window.location.origin}${window.location.pathname}#app=${app.id}`;
-  
-  // Quick QR code API URL
-  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(shareUrl)}`;
+  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(shareUrl)}`;
 
   const modalBody = document.getElementById('modalContent');
   modalBody.innerHTML = `
-    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-      <div class="app-icon" style="width:64px; height:64px; font-size:2.4rem;">${app.icon}</div>
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+      <div class="app-icon-box" style="width:52px; height:52px; font-size:1.8rem;">${app.icon}</div>
       <div>
-        <h2 style="font-size: 1.6rem; color:#fff; font-weight:700;">${app.name} <span style="font-size:0.9rem; color:var(--primary);">${latest.version}</span></h2>
-        <p style="color:var(--text-muted); font-size:0.9rem;">By ${app.authors.join(', ')} • ${app.category}</p>
+        <h2 style="font-size: 1.4rem; color:var(--text-main); font-weight:800;">${app.name}</h2>
+        <p style="color:var(--text-muted); font-size:0.85rem;">Version: <strong>${latest.version}</strong> • ${app.category}</p>
       </div>
     </div>
 
-    <p style="color: var(--text-main); font-size: 0.98rem; margin-bottom: 20px; line-height: 1.6;">
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; line-height: 1.5;">
       ${app.description}
     </p>
 
-    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
-      <h4 style="color:#fff; margin-bottom: 8px; font-size: 0.95rem;">🚀 Release Notes (${latest.version})</h4>
-      <ul style="padding-left: 20px; color: var(--text-muted); font-size: 0.88rem;">
-        ${(latest.changelog || []).map(item => `<li style="margin-bottom:4px;">${item}</li>`).join('')}
+    <div style="margin-bottom: 16px;">
+      <h4 style="font-size: 0.88rem; color:var(--text-main); margin-bottom: 6px;">Release Notes:</h4>
+      <ul style="padding-left: 18px; color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;">
+        ${(latest.changelog || []).map(item => `<li>${item}</li>`).join('')}
       </ul>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; font-size: 0.85rem; color: var(--text-muted);">
-      <div>📦 <strong>File Size:</strong> ${latest.fileSize}</div>
-      <div>📱 <strong>Requires:</strong> ${latest.minAndroid}</div>
-      <div>🏗️ <strong>Arch:</strong> ${latest.architecture}</div>
-      <div>📅 <strong>Released:</strong> ${latest.releaseDate}</div>
+    <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 12px;">
+      SHA256 Checksum:
     </div>
+    <div class="sha256-box">${latest.sha256}</div>
 
     <div style="margin-bottom: 20px;">
-      <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:6px;">Checksum (SHA256):</label>
-      <div style="background:rgba(0,0,0,0.4); padding:8px 12px; border-radius:6px; font-family:monospace; font-size:0.75rem; color:var(--accent-emerald); word-break:break-all;">
-        ${latest.sha256}
-      </div>
-    </div>
-
-    <div style="margin-bottom: 24px;">
-      <a href="${latest.apkPath}" download class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px; font-size: 1rem;">
-        ⬇️ Direct Download APK (${latest.fileSize})
+      <a href="${latest.apkPath}" download class="btn btn-solid" style="width:100%; justify-content:center; padding:12px;">
+        ⬇️ Download ${latest.apkFileName} (${latest.fileSize})
       </a>
     </div>
 
-    <hr style="border: none; border-top: 1px solid var(--border-glass); margin: 24px 0;" />
+    <hr style="border:none; border-top:1px solid var(--border-color); margin:16px 0;" />
 
-    <h4 style="color:#fff; font-size: 1rem; margin-bottom: 8px;">🔗 Share This Single APK Release</h4>
-    <p style="font-size:0.85rem; color:var(--text-muted);">Anyone opening this link will view this direct APK release card and download:</p>
-    
-    <div class="share-link-box">
-      <input type="text" readonly value="${shareUrl}" class="share-link-input" id="shareInput" />
-      <button class="btn btn-primary" style="padding: 6px 14px; font-size: 0.82rem;" onclick="copyShareUrl('${shareUrl}')">
-        📋 Copy Link
-      </button>
+    <h4 style="font-size: 0.9rem; color:var(--text-main); margin-bottom: 6px;">🔗 Single APK Direct Share Link:</h4>
+    <div class="share-link-row">
+      <input type="text" readonly value="${shareUrl}" id="shareInput" />
+      <button class="btn btn-solid" onclick="copyShareUrl('${shareUrl}')">Copy Link</button>
     </div>
 
-    <div style="display:flex; gap:10px;">
-      <button class="btn btn-emerald" style="flex:1; justify-content:center;" onclick="triggerNativeShare('${app.name}', '${shareUrl}')">
-        📲 Share via Telegram / App
-      </button>
-    </div>
-
-    <div class="qr-section">
-      <img src="${qrApiUrl}" alt="QR Code" class="qr-code-img" />
-      <div class="qr-info">
-        <h5>Scan with Phone Camera</h5>
-        <p>Scan this QR code from your mobile device screen to instantly open and download this single APK build on your phone.</p>
+    <div style="display:flex; align-items:center; gap:16px; margin-top:20px; background:var(--bg-secondary); border:1px solid var(--border-color); padding:12px; border-radius:var(--radius-md);">
+      <img src="${qrApiUrl}" alt="QR" style="width:90px; height:90px; border-radius:4px; background:#fff; padding:4px;" />
+      <div style="font-size:0.8rem; color:var(--text-muted);">
+        <strong style="color:var(--text-main); display:block; margin-bottom:4px;">Scan with Phone Camera</strong>
+        Scan this QR code from your monitor screen to open this direct APK download link on your phone.
       </div>
     </div>
   `;
@@ -238,37 +262,21 @@ function closeSingleApkModal() {
 
 function copyShareUrl(url) {
   navigator.clipboard.writeText(url).then(() => {
-    showToast('✨ Single APK share link copied to clipboard!');
+    showToast('✨ Share link copied to clipboard!');
   }).catch(() => {
     const input = document.getElementById('shareInput');
-    input.select();
-    document.execCommand('copy');
+    if (input) {
+      input.select();
+      document.execCommand('copy');
+    }
     showToast('✨ Link copied!');
   });
 }
 
-function triggerNativeShare(appName, url) {
-  if (navigator.share) {
-    navigator.share({
-      title: `Download ${appName} APK`,
-      text: `Get the latest Android release build of ${appName} directly from our Releases hub:`,
-      url: url
-    }).catch(err => console.log('Share canceled', err));
-  } else {
-    copyShareUrl(url);
-  }
-}
-
 function showToast(message) {
   const container = document.getElementById('toastContainer');
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerHTML = message;
-  
-  container.appendChild(toast);
+  container.innerHTML = `<div class="toast-msg">${message}</div>`;
   setTimeout(() => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateY(10px)';
-    setTimeout(() => toast.remove(), 300);
-  }, 3500);
+    container.innerHTML = '';
+  }, 3000);
 }

@@ -1,0 +1,178 @@
+window.APP_CATALOG = {
+  "repository": {
+    "title": "Mobile App Releases Hub",
+    "owner": "Yihun Shekuri",
+    "description": "Centralized release repository for mobile application Android builds (APKs), release notes, version histories, and direct download links.",
+    "updatedAt": "2026-08-06"
+  },
+  "apps": [
+    {
+      "id": "mezgebe-sbhat",
+      "name": "Mezgebe Sbhat",
+      "tagline": "Ethiopian Orthodox Church Hymns & Prayers with Audio and PDF Integration",
+      "category": "Spiritual & Education",
+      "icon": "📖",
+      "badge": "Stable",
+      "authors": ["Yihun Shekuri", "Yeabsira Yonas"],
+      "techStack": ["Flutter", "Dart", "PDF Viewer", "Audio Services"],
+      "summary": "Mezgebe Sbhat supports the learning and preservation of Ethiopian Orthodox Tewahedo Church hymns by combining audio recordings with written PDF texts.",
+      "description": "Mezgebe Sbhat integrates PDF versions of hymns and prayers alongside audio playback, making it easier for deacons, students, choir members, and believers to follow, study, and memorize liturgical content offline without ads.",
+      "latestVersion": "v1.0.0",
+      "latestReleaseDate": "2026-08-06",
+      "releases": [
+        {
+          "version": "v1.0.0",
+          "releaseDate": "2026-08-06",
+          "title": "Initial Official Release",
+          "apkFileName": "mezgebe-sbhat-v1.0.0.apk",
+          "apkPath": "apps/mezgebe-sbhat/v1.0.0/mezgebe-sbhat-v1.0.0.apk",
+          "fileSize": "19.4 MB",
+          "minAndroid": "Android 6.0 (API 23)+",
+          "architecture": "Universal (arm64-v8a, armeabi-v7a, x86_64)",
+          "sha256": "7880a75f80de462e72ce827375d6f21dc5ff2004d220a165181d450189755b99",
+          "changelog": [
+            "Audio playback for Ethiopian Orthodox hymns",
+            "Synchronized PDF text view for Ge'ez and Amharic hymns",
+            "Offline playback for downloaded resources",
+            "Organized categories: Mezgebe Sbhat, Liturgy, Hymnal collections",
+            "Clean, ad-free user interface for quiet study and prayer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mezgebe-zema",
+      "name": "Mezgebe Zema",
+      "tagline": "Ethiopian Orthodox Church Liturgical Audio Library & Offline Player",
+      "category": "Spiritual & Education",
+      "icon": "🎵",
+      "badge": "Stable",
+      "authors": ["Yihun Shekuri", "Yeabsira Yonas"],
+      "techStack": ["React Native", "TypeScript", "Track Player", "SQLite"],
+      "summary": "Mezgebe Zema helps users discover, organize, and play spiritual audio by church calendar months, days, and collections.",
+      "description": "Browse liturgical audio by Ethiopian month (Meskerem, Tikimt, etc.), day, or repertoire (Aquaquam, Dgua, Tsome Dgua, Wereb). Create custom playlists, heart favorites, download for offline listening, and control playback from lock screen and background widget.",
+      "latestVersion": "v1.2.0",
+      "latestReleaseDate": "2026-08-06",
+      "releases": [
+        {
+          "version": "v1.2.0",
+          "releaseDate": "2026-08-06",
+          "title": "Major Feature & Player Upgrade",
+          "apkFileName": "mezgebe-zema-v1.2.0.apk",
+          "apkPath": "apps/mezgebe-zema/v1.2.0/mezgebe-zema-v1.2.0.apk",
+          "fileSize": "19.4 MB",
+          "minAndroid": "Android 6.0 (API 23)+",
+          "architecture": "Universal (arm64-v8a, armeabi-v7a, x86_64)",
+          "sha256": "7880a75f80de462e72ce827375d6f21dc5ff2004d220a165181d450189755b99",
+          "changelog": [
+            "Enhanced background audio controls and lock screen notification player",
+            "Full calendar integration by Ethiopian month and day",
+            "Custom playlist creation and track re-ordering",
+            "Fast offline download manager with storage cleanup tools",
+            "Variable speed playback for learning complex liturgical chants"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jan-note",
+      "name": "Jan Note",
+      "tagline": "Offline-First Spiritual Notebook & Rich Text Editor for Gubae Study",
+      "category": "Productivity & Study",
+      "icon": "📝",
+      "badge": "Build",
+      "authors": ["Yihun Shekuri"],
+      "techStack": ["Flutter", "Riverpod", "Hive", "Flutter Quill"],
+      "summary": "A privacy-focused offline notebook specifically designed for Orthodox Gubae study and personal note organization.",
+      "description": "Jan Note offers rich text editing with automatic verse chip detection, tag management, reading mode viewer, background selector, autosave, and spiritual insight graph placeholder.",
+      "latestVersion": "v1.0.0",
+      "latestReleaseDate": "2026-08-06",
+      "releases": [
+        {
+          "version": "v1.0.0",
+          "releaseDate": "2026-08-06",
+          "title": "Initial Build",
+          "apkFileName": "jan-note-v1.0.0.apk",
+          "apkPath": "apps/jan-note/v1.0.0/jan-note-v1.0.0.apk",
+          "fileSize": "91.2 MB",
+          "minAndroid": "Android 6.0 (API 23)+",
+          "architecture": "Universal (arm64-v8a, armeabi-v7a, x86_64)",
+          "sha256": "648fc3bf0c30e9d201a6432a661dc481067a45b5ec7531fd4aad98ca9eb70141",
+          "changelog": [
+            "Splash screen with calm fade transitions",
+            "Interactive onboarding tutorial flow persisted in Hive DB",
+            "Rich Quill text editor with autosave, tags, verse chips, and bookmarks",
+            "Distraction-free reading mode viewer",
+            "Custom background selector and font size customization"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jan-alarm",
+      "name": "Jan Alarm",
+      "tagline": "Smart Spiritual Alarm & Daily Prayer Schedule Reminder",
+      "category": "Utilities",
+      "icon": "⏰",
+      "badge": "Build",
+      "authors": ["Yihun Shekuri"],
+      "techStack": ["React Native", "TypeScript", "Push Notifications"],
+      "summary": "Customizable alarm app tuned for canonical prayer hours, service reminders, and morning study alarms.",
+      "description": "Set recurring prayer alarms, gentle wake-up tones, liturgical calendar notifications, and custom snooze settings with high reliability.",
+      "latestVersion": "v1.0.0",
+      "latestReleaseDate": "2026-08-06",
+      "releases": [
+        {
+          "version": "v1.0.0",
+          "releaseDate": "2026-08-06",
+          "title": "Initial Build",
+          "apkFileName": "jan-alarm-v1.0.0.apk",
+          "apkPath": "apps/jan-alarm/v1.0.0/jan-alarm-v1.0.0.apk",
+          "fileSize": "19.4 MB",
+          "minAndroid": "Android 6.0 (API 23)+",
+          "architecture": "Universal",
+          "sha256": "7880a75f80de462e72ce827375d6f21dc5ff2004d220a165181d450189755b99",
+          "changelog": [
+            "Seven Canonical Prayer time presets",
+            "High-priority background alarms bypassing Doze mode",
+            "Custom audio tone selector",
+            "Snooze and wake-up challenges"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mekanat",
+      "name": "Mekanat",
+      "tagline": "Real Estate & Vehicle Marketplace Platform for Ethiopia",
+      "category": "Marketplace & Business",
+      "icon": "🏬",
+      "badge": "Beta",
+      "authors": ["Yihun Shekuri"],
+      "techStack": ["Flutter", "Dart", "REST API"],
+      "summary": "Mobile application for listing, searching, and managing real estate properties and vehicles in Ethiopia.",
+      "description": "Mekanat connects property owners, car buyers, and brokers with clean search filters, location-based listings, direct call/SMS buttons, and favorite save lists.",
+      "latestVersion": "v1.0.0",
+      "latestReleaseDate": "2026-08-06",
+      "releases": [
+        {
+          "version": "v1.0.0",
+          "releaseDate": "2026-08-06",
+          "title": "Beta Preview Release",
+          "apkFileName": "mekanat-v1.0.0.apk",
+          "apkPath": "apps/mekanat/v1.0.0/mekanat-v1.0.0.apk",
+          "fileSize": "19.4 MB",
+          "minAndroid": "Android 6.0 (API 23)+",
+          "architecture": "Universal",
+          "sha256": "7880a75f80de462e72ce827375d6f21dc5ff2004d220a165181d450189755b99",
+          "changelog": [
+            "Property and car listing creation with photo upload",
+            "Category and price range filtering",
+            "Direct seller contact via phone or Telegram",
+            "Favorite listings manager"
+          ]
+        }
+      ]
+    }
+  ]
+};

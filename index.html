@@ -1,110 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile Application Releases Hub | Direct APK Downloads & Share Links</title>
-  <meta name="description" content="Official repository for mobile application Android builds (APKs), release notes, version histories, and single-click share links.">
+  <title>Mobile Application Releases Hub</title>
+  <meta name="description" content="Central repository for mobile application Android builds (APKs), release notes, version histories, and single-click share links.">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header Navbar -->
   <header>
     <div class="container nav-wrapper">
       <a href="#" class="brand-logo">
         <div class="brand-icon">📦</div>
-        <span>Releases Hub</span>
+        <span>Releases</span>
       </a>
-      <div class="nav-links">
-        <a href="./README.md" class="btn btn-glass">📄 README Matrix</a>
-        <a href="https://github.com/yihunshekuri/Releases" target="_blank" class="btn btn-primary">
-          <span>GitHub Repository</span>
-        </a>
+      <div class="nav-controls">
+        <button class="btn theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Light</button>
+        <a href="./README.md" class="btn">📄 README</a>
+        <a href="https://github.com/yihunshekuri/Releases" target="_blank" class="btn btn-solid">GitHub Repo</a>
       </div>
     </div>
   </header>
 
-  <!-- Main Body Container -->
+  <!-- Main Body -->
   <main class="container">
 
-    <!-- Hero Section -->
+    <!-- Hero Header -->
     <section class="hero">
-      <div class="badge-pill">
-        <span>⚡ Official Mobile Releases & Distribution Hub</span>
-      </div>
-      <h1 class="hero-title">
-        Download & Share <span>Latest Mobile Apps</span>
-      </h1>
+      <div class="tag-badge">MOBILE RELEASES HUB</div>
+      <h1 class="hero-title">Mobile Application Releases</h1>
       <p class="hero-subtitle">
-        Explore stable builds, preview releases, release notes, and SHA256 checksums for all mobile applications. Share direct single-APK links easily with anyone.
+        Explore stable builds, release notes, and SHA256 checksums for all mobile applications. Share direct single-APK links easily with anyone.
       </p>
     </section>
 
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-      <div class="stat-card">
-        <div class="stat-number" id="statTotalApps">5</div>
-        <div class="stat-label">Mobile Applications</div>
+    <!-- Honest Real Stats Grid -->
+    <section class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-val" id="statTotalApps">5</div>
+        <div class="stat-lbl">Applications</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number" id="statTotalDownloads">13,250+</div>
-        <div class="stat-label">Total Downloads</div>
+      <div class="stat-item">
+        <div class="stat-val" id="statTotalBuilds">5</div>
+        <div class="stat-lbl">Active Builds</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number" id="statLastUpdate">Today</div>
-        <div class="stat-label">Latest Release</div>
+      <div class="stat-item">
+        <div class="stat-val" id="statTotalSize">167.6 MB</div>
+        <div class="stat-lbl">Total Size</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number" style="color: var(--accent-emerald);">100%</div>
-        <div class="stat-label">Ad-Free & Safe</div>
+      <div class="stat-item">
+        <div class="stat-val" id="statLastUpdate">2026-08-06</div>
+        <div class="stat-lbl">Latest Update</div>
       </div>
     </section>
 
-    <!-- Controls & Filters -->
-    <section class="controls-wrapper">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Search applications by name, tag, or feature..." />
+    <!-- Search & Filter Controls -->
+    <section class="controls-bar">
+      <div class="search-field">
+        <svg class="search-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Filter apps by name, tag, or feature..." />
       </div>
-      <div class="filter-pills" id="categoryFilters">
-        <!-- Rendered dynamically via JS -->
+      <div class="filter-group" id="categoryFilters">
+        <!-- Rendered dynamically -->
       </div>
     </section>
 
     <!-- App Cards Grid -->
     <section>
       <div class="app-grid" id="appGrid">
-        <!-- Rendered dynamically via JS -->
+        <!-- Rendered dynamically -->
       </div>
     </section>
 
   </main>
 
   <!-- Single APK View & Share Modal Overlay -->
-  <div class="modal-overlay" id="singleApkModal">
-    <div class="modal-container">
-      <button class="modal-close" onclick="closeSingleApkModal()">&times;</button>
+  <div class="modal-backdrop" id="singleApkModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeSingleApkModal()">&times;</button>
       <div id="modalContent">
-        <!-- Content injected dynamically via JS -->
+        <!-- Content injected dynamically -->
       </div>
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
-  <div class="toast-container" id="toastContainer"></div>
+  <!-- Toast Notification Box -->
+  <div class="toast-box" id="toastContainer"></div>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>© 2026 Mobile Application Releases Hub. Developed by <strong>Yihun Shekuri</strong> & <strong>Yeabsira Yonas</strong>.</p>
-      <p style="margin-top: 8px;">
+      <p>© 2026 Mobile Application Releases Hub • Maintained by <strong>Yihun Shekuri</strong> & <strong>Yeabsira Yonas</strong></p>
+      <p style="margin-top: 6px;">
         <a href="./README.md">View Repository Matrix</a> • 
         <a href="./data/apps.json" target="_blank">Raw JSON Catalog</a>
       </p>
     </div>
   </footer>
 
+  <!-- Include fallback script FIRST so local file:// browsing works immediately without CORS errors -->
+  <script src="./data/apps-data.js"></script>
   <script src="./js/app.js"></script>
 </body>
 </html>
