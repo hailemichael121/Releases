@@ -16,7 +16,7 @@ In addition to browsing this repository directly, an interactive web showcase is
 - **Single APK Sharing**: Every application build has a unique deep link format. Sharing a single-APK link opens the exact release card with direct download buttons.
   - *Example Share Link Format*:  
     `https://yihunshekuri.github.io/Releases/#apk=jan-note-v1.0.0`  
-    `https://yihunshekuri.github.io/Releases/#app=mezgebe-zema`
+    `https://yihunshekuri.github.io/Releases/#app=mekanat`
 
 ---
 
@@ -28,7 +28,7 @@ In addition to browsing this repository directly, an interactive web showcase is
 | **Mezgebe Zema** | Spiritual & Education | `v1.2.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/mezgebe-zema/v1.2.0/mezgebe-zema-v1.2.0.apk) | [`#app=mezgebe-zema`](./index.html#app=mezgebe-zema) |
 | **Jan Note** | Productivity & Study | `v1.0.0` | 2026-08-06 | 91.2 MB | [Download APK](./apps/jan-note/v1.0.0/jan-note-v1.0.0.apk) | [`#app=jan-note`](./index.html#app=jan-note) |
 | **Jan Alarm** | Utilities | `v1.0.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/jan-alarm/v1.0.0/jan-alarm-v1.0.0.apk) | [`#app=jan-alarm`](./index.html#app=jan-alarm) |
-| **Mekanat** | Marketplace & Business | `v1.0.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/mekanat/v1.0.0/mekanat-v1.0.0.apk) | [`#app=mekanat`](./index.html#app=mekanat) |
+| **Mekanat** | Spiritual & Mapping | `v1.0.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/mekanat/v1.0.0/mekanat-v1.0.0.apk) | [`#app=mekanat`](./index.html#app=mekanat) |
 
 ---
 
@@ -40,6 +40,7 @@ In addition to browsing this repository directly, an interactive web showcase is
 Mezgebe Sbhat supports the learning and preservation of Ethiopian Orthodox Tewahedo Church hymns by combining audio recordings with corresponding written PDF texts.
 
 - **Folder Path**: [`apps/mezgebe-sbhat/`](./apps/mezgebe-sbhat/)
+- **Brand Color**: `#3b82f6` (Azure Blue)
 - **Latest Version**: `v1.0.0`
 - **Key Features**:
   - Audio playback for Ethiopian Orthodox hymns.
@@ -56,6 +57,7 @@ Mezgebe Sbhat supports the learning and preservation of Ethiopian Orthodox Tewah
 Mezgebe Zema helps users discover, organize, and play spiritual audio by church calendar months, days, and collections (Aquaquam, Dgua, Tsome Dgua, Wereb).
 
 - **Folder Path**: [`apps/mezgebe-zema/`](./apps/mezgebe-zema/)
+- **Brand Color**: `#8b5cf6` (Liturgical Violet)
 - **Latest Version**: `v1.2.0`
 - **Key Features**:
   - Full player controls (mini & full player, lock screen notification, background play).
@@ -72,6 +74,7 @@ Mezgebe Zema helps users discover, organize, and play spiritual audio by church 
 A privacy-focused offline notebook designed for Orthodox Gubae study, verse tagging, and rich note organization.
 
 - **Folder Path**: [`apps/jan-note/`](./apps/jan-note/)
+- **Brand Color**: `#10b981` (Emerald Green)
 - **Latest Version**: `v1.0.0`
 - **Key Features**:
   - Rich Quill editor with autosave, tags, verse chips, and bookmarks.
@@ -88,6 +91,7 @@ A privacy-focused offline notebook designed for Orthodox Gubae study, verse tagg
 Customizable alarm application tuned for canonical prayer hours, service reminders, and morning study alarms.
 
 - **Folder Path**: [`apps/jan-alarm/`](./apps/jan-alarm/)
+- **Brand Color**: `#f59e0b` (Prayer Bell Gold)
 - **Latest Version**: `v1.0.0`
 - **Developer**: Yihun Shekuri
 - **Checksum (SHA256)**: `7880a75f80de462e72ce827375d6f21dc5ff2004d220a165181d450189755b99`
@@ -95,11 +99,12 @@ Customizable alarm application tuned for canonical prayer hours, service reminde
 ---
 
 ### 5. Mekanat (`mekanat`)
-> Real Estate & Vehicle Marketplace Platform for Ethiopia
+> Ethiopian Orthodox Church Mapping & Liturgical Companion
 
-Mobile application for listing, searching, and managing real estate properties and vehicles in Ethiopia.
+Mekanat provides interactive map navigation for Ethiopian Orthodox Tewahedo Church locations, parish contacts, church history, daily canonical prayers, 81-book Orthodox Bible integration, and feast day calendar events.
 
 - **Folder Path**: [`apps/mekanat/`](./apps/mekanat/)
+- **Brand Color**: `#d4a017` (Church Gold)
 - **Latest Version**: `v1.0.0`
 - **Developer**: Yihun Shekuri
 - **Checksum (SHA256)**: `7880a75f80de462e72ce827375d6f21dc5ff2004d220a165181d450189755b99`
@@ -112,10 +117,12 @@ You can automatically register a new build APK using the included CLI tool [`scr
 
 ```bash
 python3 scripts/add_release.py \
-  --app jan-note \
+  --app mekanat \
   --version v1.1.0 \
   --apk /path/to/app-release.apk \
-  --changelog "Added cloud backup and enhanced search"
+  --icon /path/to/icon.png \
+  --brand-color "#d4a017" \
+  --changelog "Updated church geolocation markers"
 ```
 
 This script automatically:

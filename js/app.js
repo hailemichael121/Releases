@@ -1,13 +1,9 @@
 let catalogData = null;
 let currentFilter = 'all';
+let activeView = 'apps'; // 'apps', 'readme', 'json'
 
 const SVG_ICONS = {
   box: `<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>`,
-  book: `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
-  music: `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
-  note: `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`,
-  clock: `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
-  store: `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`,
   download: `<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
   share: `<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>`,
   sun: `<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
@@ -60,6 +56,7 @@ async function loadCatalogData() {
     renderRealStats(catalogData);
     renderCategoryFilters(catalogData.apps);
     renderAppGrid(catalogData.apps);
+    renderBeautifiedJsonView(catalogData);
   } else {
     document.getElementById('appGrid').innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; color: #ef4444; padding: 40px;">
@@ -114,8 +111,23 @@ function renderCategoryFilters(apps) {
   });
 }
 
-function getAppIconSvg(iconKey) {
-  return SVG_ICONS[iconKey] || SVG_ICONS.box;
+function switchViewTab(view) {
+  activeView = view;
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.view === view);
+  });
+
+  const appsSection = document.getElementById('appsSection');
+  const readmeSection = document.getElementById('readmeSection');
+  const jsonSection = document.getElementById('jsonSection');
+
+  appsSection.style.display = view === 'apps' ? 'block' : 'none';
+  readmeSection.style.display = view === 'readme' ? 'block' : 'none';
+  jsonSection.style.display = view === 'json' ? 'block' : 'none';
+
+  if (view === 'readme' && !readmeSection.getAttribute('data-loaded')) {
+    loadReadmeMarkdown();
+  }
 }
 
 function renderAppGrid(apps) {
@@ -131,12 +143,12 @@ function renderAppGrid(apps) {
 
   container.innerHTML = apps.map(app => {
     const latest = app.releases[0] || {};
-    const iconSvg = getAppIconSvg(app.icon);
+    const brandColor = app.brandColor || '#ffffff';
     return `
-      <div class="app-card" id="card-${app.id}">
+      <div class="app-card" id="card-${app.id}" style="--app-brand-color: ${brandColor};">
         <div>
           <div class="app-head">
-            <div class="app-icon-box">${iconSvg}</div>
+            <img src="${app.iconUrl}" alt="${app.name}" class="app-icon-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' fill=\'none\' stroke=\'%23a3a3a3\' stroke-width=\'2\' viewBox=\'0 0 24 24\'><rect width=\'18\' height=\'18\' x=\'3\' y=\'3\' rx=\'4\'/></svg>'" />
             <div>
               <h3 class="app-name">${app.name}</h3>
               <span class="app-cat">${app.category}</span>
@@ -164,11 +176,63 @@ function renderAppGrid(apps) {
   }).join('');
 }
 
+async function loadReadmeMarkdown() {
+  const container = document.getElementById('readmeContent');
+  try {
+    const res = await fetch('./README.md');
+    if (!res.ok) throw new Error('README fetch failed');
+    const mdText = await res.text();
+    
+    if (window.marked) {
+      container.innerHTML = window.marked.parse(mdText);
+    } else {
+      container.innerHTML = `<pre style="white-space: pre-wrap; font-family: monospace;">${escapeHtml(mdText)}</pre>`;
+    }
+    document.getElementById('readmeSection').setAttribute('data-loaded', 'true');
+  } catch (err) {
+    container.innerHTML = `<p style="color:var(--text-muted);">View repository details in <a href="./README.md">README.md</a>.</p>`;
+  }
+}
+
+function renderBeautifiedJsonView(data) {
+  const container = document.getElementById('jsonCodeContainer');
+  if (!container) return;
+  const jsonStr = JSON.stringify(data, null, 2);
+  container.innerHTML = syntaxHighlightJson(jsonStr);
+}
+
+function syntaxHighlightJson(jsonStr) {
+  jsonStr = escapeHtml(jsonStr);
+  return jsonStr.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+    let cls = 'json-number';
+    if (/^"/.test(match)) {
+      if (/:$/.test(match)) {
+        cls = 'json-key';
+      } else {
+        cls = 'json-string';
+      }
+    } else if (/true|false/.test(match)) {
+      cls = 'json-boolean';
+    }
+    return '<span class="' + cls + '">' + match + '</span>';
+  });
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function setupEventListeners() {
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
     searchInput.addEventListener('input', filterAndRenderApps);
   }
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      switchViewTab(e.target.dataset.view);
+    });
+  });
 
   window.addEventListener('hashchange', checkHashNavigation);
 
@@ -215,12 +279,11 @@ function openSingleApkModal(appId) {
   const latest = app.releases[0] || {};
   const shareUrl = `${window.location.origin}${window.location.pathname}#app=${app.id}`;
   const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(shareUrl)}`;
-  const iconSvg = getAppIconSvg(app.icon);
 
   const modalBody = document.getElementById('modalContent');
   modalBody.innerHTML = `
     <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
-      <div class="app-icon-box" style="width:48px; height:48px;">${iconSvg}</div>
+      <img src="${app.iconUrl}" alt="${app.name}" style="width:48px; height:48px; border-radius:8px; border:1px solid var(--border-color); object-fit:cover;" />
       <div>
         <h2 style="font-size: 1.35rem; color:var(--text-main); font-weight:800;">${app.name}</h2>
         <p style="color:var(--text-muted); font-size:0.85rem;">Version: <strong>${latest.version}</strong> • ${app.category}</p>

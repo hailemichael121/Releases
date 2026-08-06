@@ -9,7 +9,7 @@ from datetime import datetime
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 APPS_JSON_PATH = os.path.join(REPO_ROOT, "data", "apps.json")
-README_PATH = os.path.join(REPO_ROOT, "README.md")
+APPS_DATA_JS_PATH = os.path.join(REPO_ROOT, "data", "apps-data.js")
 
 def calculate_sha256(file_path):
     sha256_hash = hashlib.sha256()
@@ -28,6 +28,8 @@ def main():
     parser.add_argument("--app", required=True, help="App ID (e.g. jan-note, mezgebe-zema, mezgebe-sbhat, jan-alarm, mekanat)")
     parser.add_argument("--version", required=True, help="Release version tag (e.g. v1.1.0)")
     parser.add_argument("--apk", required=True, help="Path to input .apk file")
+    parser.add_argument("--icon", help="Path to custom .png app icon image")
+    parser.add_argument("--brand-color", help="Hex color code for app card branding accent (e.g. #d4a017)")
     parser.add_argument("--changelog", nargs="+", help="Changelog list items", default=["General performance improvements and bug fixes"])
     
     args = parser.parse_args()
@@ -45,9 +47,21 @@ def main():
         
     app_entry = next((a for a in data["apps"] if a["id"] == args.app), None)
     if not app_entry:
-        print(f"Error: App ID '{args.app}' not found in data/apps.json. Available: {[a['id'] for a in data['apps']]}")
+        print(f"Error: App ID '{args.app}' not found in data/apps.json.")
         sys.exit(1)
         
+    # Copy icon if provided
+    if args.icon and os.path.isfile(args.icon):
+        icons_dir = os.path.join(REPO_ROOT, "assets", "icons")
+        os.makedirs(icons_dir, exist_ok=True)
+        icon_dest_name = f"{args.app}.png"
+        icon_dest_path = os.path.join(icons_dir, icon_dest_name)
+        shutil.copy2(args.icon, icon_dest_path)
+        app_entry["iconUrl"] = f"assets/icons/{icon_dest_name}"
+
+    if args.brand_color:
+        app_entry["brandColor"] = args.brand_color
+
     # Copy APK to target destination
     target_dir = os.path.join(REPO_ROOT, "apps", args.app, args.version)
     os.makedirs(target_dir, exist_ok=True)
@@ -71,7 +85,6 @@ def main():
         "minAndroid": "Android 6.0 (API 23)+",
         "architecture": "Universal",
         "sha256": sha256,
-        "downloadCount": 100,
         "changelog": args.changelog
     }
     
@@ -84,12 +97,15 @@ def main():
     
     with open(APPS_JSON_PATH, "w") as f:
         json.dump(data, f, indent=2)
+
+    with open(APPS_DATA_JS_PATH, "w") as f:
+        f.write("window.APP_CATALOG = " + json.dumps(data, indent=2) + ";\n")
         
     print(f"✅ Successfully registered release {args.version} for '{args.app}'!")
     print(f"   Destination: {rel_apk_path}")
     print(f"   Size: {file_size}")
     print(f"   SHA256: {sha256}")
-    print("   apps.json updated successfully.")
+    print("   apps.json and apps-data.js updated successfully.")
 
 if __name__ == "__main__":
     main()
