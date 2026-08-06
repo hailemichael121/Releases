@@ -121,23 +121,24 @@ header {
   text-decoration: none;
   color: var(--text-main);
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   letter-spacing: -0.02em;
 }
 
-/* Prominent Recognized Brand Logo */
+/* Prominent Bold Catchy Logo Emblem */
 .brand-icon-img {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-pill);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
   object-fit: cover;
-  border: 1.5px solid rgba(212, 160, 23, 0.6);
-  box-shadow: 0 0 12px rgba(212, 160, 23, 0.25);
-  transition: transform 0.2s ease;
+  border: 2px solid #d4a017;
+  box-shadow: 0 0 14px rgba(212, 160, 23, 0.35);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #000;
 }
 
 .brand-logo:hover .brand-icon-img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .nav-controls {
@@ -146,7 +147,7 @@ header {
   gap: 10px;
 }
 
-/* View Mode Navigation Tabs - Pilled Container */
+/* View Mode Navigation Tabs - Pilled Container for Desktop */
 .view-tabs {
   display: flex;
   gap: 4px;
@@ -632,36 +633,72 @@ footer a {
 
 /* Full Responsive Mobile Media Queries */
 @media (max-width: 768px) {
+  header {
+    padding: 10px 0;
+  }
+
   .nav-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   .brand-logo {
-    justify-content: flex-start;
+    font-size: 1.1rem;
   }
 
-  .view-tabs {
-    width: 100%;
-    justify-content: space-between;
-    overflow-x: auto;
+  .brand-icon-img {
+    width: 38px;
+    height: 38px;
   }
 
-  .tab-btn {
-    flex: 1;
-    text-align: center;
-    padding: 8px 12px;
-  }
-
+  /* Compact Icon-Only Buttons on Top Right in Mobile */
   .nav-controls {
-    justify-content: space-between;
-    width: 100%;
+    gap: 6px;
   }
 
   .nav-controls .btn {
-    flex: 1;
+    padding: 8px;
+    min-width: 38px;
+    height: 38px;
     justify-content: center;
+    border-radius: 50%;
+  }
+
+  .nav-controls .btn-text {
+    display: none; /* Hide text on mobile for clean icon buttons */
+  }
+
+  /* Minimal & Clean Underline Tab Navigation on Mobile (Not Pills) */
+  .view-tabs {
+    width: 100%;
+    order: 3;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 0;
+    padding: 0;
+    gap: 0;
+    justify-content: space-around;
+  }
+
+  .tab-btn {
+    border-radius: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 10px 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    flex: 1;
+    text-align: center;
+  }
+
+  .tab-btn.active {
+    color: var(--text-main);
+    border-bottom: 2px solid var(--text-main);
+    font-weight: 700;
   }
 
   .hero-title {
@@ -691,11 +728,7 @@ footer a {
   }
 
   .app-card {
-    padding: 18px;
-  }
-
-  .app-card-actions {
-    flex-direction: row;
+    padding: 20px 18px;
   }
 
   .readme-view-box {
