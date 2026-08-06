@@ -169,11 +169,11 @@ function renderAppGrid(apps) {
         </div>
 
         <div class="app-card-actions">
-          <a href="${latest.apkPath}" download class="btn btn-solid">
-            ${SVG_ICONS.download} Download APK
+          <a href="${latest.apkPath}" download class="btn btn-solid action-btn" aria-label="Download APK">
+            ${SVG_ICONS.download} <span class="btn-text">Download APK</span>
           </a>
-          <button class="btn" onclick="openSingleApkModal('${app.id}')">
-            ${SVG_ICONS.share} Share APK
+          <button class="btn action-btn" onclick="openSingleApkModal('${app.id}')" aria-label="Share APK">
+            ${SVG_ICONS.share} <span class="btn-text">Share APK</span>
           </button>
         </div>
       </div>
@@ -327,8 +327,8 @@ function openSingleApkModal(appId) {
     <div class="sha256-box">${latest.sha256}</div>
 
     <div style="margin-bottom: 20px;">
-      <a href="${latest.apkPath}" download class="btn btn-solid" style="width:100%; justify-content:center; padding:12px;">
-        ${SVG_ICONS.download} Download ${latest.apkFileName} (${latest.fileSize})
+      <a href="${latest.apkPath}" download class="btn btn-solid" style="width:100%; justify-content:center; padding:10px 16px; font-size:0.8rem; min-height:36px;">
+        ${SVG_ICONS.download} <span style="white-space:nowrap;">Download ${latest.apkFileName} (${latest.fileSize})</span>
       </a>
     </div>
 
@@ -337,7 +337,7 @@ function openSingleApkModal(appId) {
     <h4 style="font-size: 0.88rem; color:var(--text-main); margin-bottom: 6px;">Single APK Direct Share Link:</h4>
     <div class="share-link-row">
       <input type="text" readonly value="${shareUrl}" id="shareInput" />
-      <button class="btn btn-solid" onclick="copyShareUrl('${shareUrl}')">Copy Link</button>
+      <button class="btn btn-solid" onclick="copyShareUrl('${shareUrl}')" style="font-size:0.8rem; padding:6px 14px; min-height:34px;">Copy Link</button>
     </div>
 
     <div style="display:flex; align-items:center; gap:16px; margin-top:20px; background:var(--bg-secondary); border:1px solid var(--border-color); padding:12px; border-radius:var(--radius-md);">

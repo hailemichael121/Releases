@@ -203,18 +203,19 @@ header {
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 18px;
+  gap: 6px;
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   cursor: pointer;
   border: 1px solid var(--border-color);
   background: var(--bg-card);
   color: var(--text-main);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
-  min-height: 38px;
+  min-height: 34px;
+  white-space: nowrap;
 }
 
 .btn:hover {
@@ -237,7 +238,7 @@ header {
 }
 
 .theme-toggle-btn {
-  padding: 8px 16px;
+  padding: 6px 14px;
 }
 
 /* Hero Section */
@@ -308,15 +309,15 @@ header {
 
 .search-field input {
   width: 100%;
-  padding: 10px 16px 10px 40px;
+  padding: 8px 16px 8px 38px;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-pill);
   color: var(--text-main);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   outline: none;
   transition: border-color 0.2s ease;
-  min-height: 42px;
+  min-height: 38px;
 }
 
 .search-field input:focus {
@@ -685,6 +686,25 @@ footer a {
     display: none;
   }
 
+  /* Compact Icon-Only Download & Share Buttons on Mobile App Cards */
+  .app-card-actions .action-btn {
+    padding: 8px;
+    min-width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    justify-content: center;
+    flex: initial;
+  }
+
+  .app-card-actions .action-btn .btn-text {
+    display: none; /* Hide text on mobile for clean icon buttons */
+  }
+
+  .app-card-actions {
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
   /* Minimal & Clean Underline Tab Navigation on Mobile (Not Pills) */
   .view-tabs {
     width: 100%;
@@ -764,13 +784,5 @@ footer a {
 
   .stat-val {
     font-size: 1.2rem;
-  }
-
-  .app-card-actions {
-    flex-direction: column;
-  }
-
-  .app-card-actions .btn {
-    width: 100%;
   }
 }
