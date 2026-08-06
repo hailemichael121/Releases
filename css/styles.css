@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* High-Contrast Crisp Monochrome & Thin Lined Theme */
+/* High-Contrast Crisp Monochrome Theme */
 :root {
   --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
@@ -18,7 +18,7 @@
   --badge-bg: #1f1f1f;
   --badge-text: #e5e5e5;
   
-  --grid-line-color: rgba(255, 255, 255, 0.04);
+  --grid-line-color: rgba(255, 255, 255, 0.08);
   --code-bg: #0d0d0d;
   
   --radius-sm: 6px;
@@ -43,7 +43,7 @@
   --badge-bg: #f4f4f5;
   --badge-text: #18181b;
   
-  --grid-line-color: rgba(0, 0, 0, 0.05);
+  --grid-line-color: rgba(0, 0, 0, 0.06);
   --code-bg: #f4f4f5;
 }
 
@@ -60,13 +60,29 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   overflow-x: hidden;
-  
-  /* Thin Lined Grid Pattern Background */
+  position: relative;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Thin Lined Grid Pattern Background - Vignette Center Fade in Dark Mode */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
   background-image: 
     linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
   background-size: 32px 32px;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.05) 15%, rgba(0, 0, 0, 0.95) 80%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.05) 15%, rgba(0, 0, 0, 0.95) 80%);
+}
+
+[data-theme="light"] body::before {
+  mask-image: none;
+  -webkit-mask-image: none;
+  opacity: 0.6;
 }
 
 code, pre, .mono-text {
@@ -102,27 +118,25 @@ header {
   text-decoration: none;
   color: var(--text-main);
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   letter-spacing: -0.02em;
 }
 
 .brand-icon {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-sm);
   background: var(--text-main);
   color: var(--accent-inverse);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  font-size: 1.1rem;
 }
 
 .nav-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* Buttons */
@@ -160,13 +174,12 @@ header {
 }
 
 .theme-toggle-btn {
-  padding: 8px 12px;
-  font-size: 0.9rem;
+  padding: 8px 14px;
 }
 
 /* Hero Section */
 .hero {
-  padding: 48px 0 24px;
+  padding: 44px 0 20px;
 }
 
 .tag-badge {
@@ -183,15 +196,15 @@ header {
 }
 
 .hero-title {
-  font-size: 2.4rem;
+  font-size: 2.3rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   line-height: 1.2;
 }
 
 .hero-subtitle {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-muted);
   max-width: 640px;
   line-height: 1.6;
@@ -202,7 +215,7 @@ header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  margin: 28px 0;
+  margin: 24px 0 32px;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   padding: 16px 0;
@@ -214,14 +227,14 @@ header {
 }
 
 .stat-val {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 800;
   color: var(--text-main);
   font-family: 'JetBrains Mono', monospace;
 }
 
 .stat-lbl {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -250,7 +263,7 @@ header {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   color: var(--text-main);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   outline: none;
 }
 
@@ -323,20 +336,20 @@ header {
 }
 
 .app-icon-box {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-sm);
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  color: var(--text-main);
   flex-shrink: 0;
 }
 
 .app-name {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -375,7 +388,7 @@ header {
   justify-content: center;
 }
 
-/* Modal Overlay */
+/* Modal Backdrop */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -400,11 +413,11 @@ header {
   background: var(--bg-primary);
   border: 1px solid var(--border-active);
   border-radius: var(--radius-lg);
-  max-width: 580px;
+  max-width: 560px;
   width: 100%;
   max-height: 85vh;
   overflow-y: auto;
-  padding: 28px;
+  padding: 26px;
   position: relative;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
@@ -416,8 +429,8 @@ header {
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-muted);
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -440,13 +453,13 @@ header {
   font-size: 0.75rem;
   color: var(--text-muted);
   word-break: break-all;
-  margin: 10px 0 16px;
+  margin: 8px 0 16px;
 }
 
 .share-link-row {
   display: flex;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .share-link-row input {
