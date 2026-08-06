@@ -14,7 +14,7 @@
   <!-- Header Navbar -->
   <header>
     <div class="container nav-wrapper">
-      <a href="#" class="brand-logo">
+      <a href="#" onclick="switchViewTab('apps'); return false;" class="brand-logo">
         <div class="brand-icon">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
@@ -92,14 +92,14 @@
       </section>
     </div>
 
-    <!-- Beautified README Matrix Section -->
+    <!-- Beautified In-Page README Matrix Section -->
     <div id="readmeSection" style="display: none;">
       <div class="readme-view-box" id="readmeContent">
         <p style="color:var(--text-muted);">Loading README matrix...</p>
       </div>
     </div>
 
-    <!-- Beautified Raw JSON Catalog Section -->
+    <!-- Beautified In-Page Raw JSON Catalog Section -->
     <div id="jsonSection" style="display: none;">
       <div class="json-viewer-box">
         <pre id="jsonCodeContainer"></pre>
@@ -126,8 +126,8 @@
     <div class="container">
       <p>© 2026 Mobile Application Releases Hub • Maintained by <strong>Yihun Shekuri</strong> & <strong>Yeabsira Yonas</strong></p>
       <p style="margin-top: 6px;">
-        <a href="./README.md">View Repository Matrix</a> • 
-        <a href="./data/apps.json" target="_blank">Raw JSON Catalog</a>
+        <a onclick="switchViewTab('readme')">View Repository Matrix</a> • 
+        <a onclick="switchViewTab('json')">Raw JSON Catalog</a>
       </p>
     </div>
   </footer>

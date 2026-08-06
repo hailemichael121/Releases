@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* High-Contrast Crisp Monochrome Theme with Per-App Branding Accents */
+/* High-Contrast Glassmorphic Theme with Ambient Per-App Branding Tint */
 :root {
   --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
@@ -332,7 +332,7 @@ header {
   background: var(--bg-card-hover);
 }
 
-/* App Grid & Application Branding Cards */
+/* Glassmorphic Application Cards with Ambient Brand Glow */
 .app-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -343,20 +343,39 @@ header {
 .app-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-top: 3px solid var(--app-brand-color, var(--border-color));
-  border-radius: var(--radius-md);
-  padding: 20px;
+  border-radius: var(--radius-lg);
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  overflow: hidden;
+}
+
+.app-card::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--app-brand-color, transparent);
+  filter: blur(45px);
+  opacity: 0.18;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .app-card:hover {
+  transform: translateY(-3px);
   border-color: var(--border-active);
-  border-top-color: var(--app-brand-color, var(--text-main));
-  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.4), 0 0 18px -4px var(--app-brand-color, transparent);
+}
+
+.app-card:hover::after {
+  opacity: 0.35;
 }
 
 .app-head {
@@ -418,7 +437,7 @@ header {
   justify-content: center;
 }
 
-/* Beautified README View Section */
+/* Beautified In-Page README View Section */
 .readme-view-box {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -451,7 +470,7 @@ header {
   background: var(--bg-secondary);
 }
 
-/* Beautified JSON Catalog Viewer */
+/* Beautified In-Page JSON Catalog Viewer */
 .json-viewer-box {
   background: var(--code-bg);
   border: 1px solid var(--border-color);
@@ -585,6 +604,7 @@ footer {
 footer a {
   color: var(--text-muted);
   text-decoration: underline;
+  cursor: pointer;
 }
 
 @media (max-width: 640px) {

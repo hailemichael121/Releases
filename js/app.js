@@ -263,7 +263,11 @@ function checkHashNavigation() {
   const hash = window.location.hash;
   if (!hash || !catalogData) return;
 
-  if (hash.startsWith('#app=') || hash.startsWith('#apk=')) {
+  if (hash === '#readme' || hash === '#matrix') {
+    switchViewTab('readme');
+  } else if (hash === '#json') {
+    switchViewTab('json');
+  } else if (hash.startsWith('#app=') || hash.startsWith('#apk=')) {
     const targetId = hash.split('=')[1];
     if (targetId) {
       openSingleApkModal(targetId);
@@ -334,7 +338,7 @@ function openSingleApkModal(appId) {
 
 function closeSingleApkModal() {
   document.getElementById('singleApkModal').classList.remove('active');
-  if (window.location.hash) {
+  if (window.location.hash && window.location.hash.startsWith('#app=')) {
     history.pushState("", document.title, window.location.pathname + window.location.search);
   }
 }
