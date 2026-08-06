@@ -117,28 +117,29 @@ header {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   text-decoration: none;
   color: var(--text-main);
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   letter-spacing: -0.02em;
 }
 
-/* Prominent Bold Catchy Logo Emblem */
+/* Enlarged & Prominent Best Archaeological Logo Icon */
 .brand-icon-img {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   object-fit: cover;
-  border: 2px solid #d4a017;
-  box-shadow: 0 0 14px rgba(212, 160, 23, 0.35);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1.5px solid var(--border-active);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
   background: #000;
 }
 
 .brand-logo:hover .brand-icon-img {
-  transform: scale(1.08);
+  transform: scale(1.06);
+  border-color: var(--text-main);
 }
 
 .nav-controls {
@@ -225,16 +226,24 @@ header {
 .tag-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 14px;
+  gap: 10px;
+  padding: 6px 16px;
   border-radius: var(--radius-pill);
   background: var(--badge-bg);
   color: var(--text-muted);
   border: 1px solid var(--border-color);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 600;
   font-family: 'JetBrains Mono', monospace;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.tag-badge-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
 }
 
 .hero-title {
@@ -645,12 +654,12 @@ footer a {
   }
 
   .brand-logo {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .brand-icon-img {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
   }
 
   /* Compact Icon-Only Buttons on Top Right in Mobile */
@@ -667,7 +676,7 @@ footer a {
   }
 
   .nav-controls .btn-text {
-    display: none; /* Hide text on mobile for clean icon buttons */
+    display: none;
   }
 
   /* Minimal & Clean Underline Tab Navigation on Mobile (Not Pills) */
