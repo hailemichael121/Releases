@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Application Releases Hub | Direct APK Downloads & Share Links</title>
+  <meta name="description" content="Official repository for mobile application Android builds (APKs), release notes, version histories, and single-click share links.">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">📦</div>
+        <span>Releases Hub</span>
+      </a>
+      <div class="nav-links">
+        <a href="./README.md" class="btn btn-glass">📄 README Matrix</a>
+        <a href="https://github.com/yihunshekuri/Releases" target="_blank" class="btn btn-primary">
+          <span>GitHub Repository</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Body Container -->
+  <main class="container">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="badge-pill">
+        <span>⚡ Official Mobile Releases & Distribution Hub</span>
+      </div>
+      <h1 class="hero-title">
+        Download & Share <span>Latest Mobile Apps</span>
+      </h1>
+      <p class="hero-subtitle">
+        Explore stable builds, preview releases, release notes, and SHA256 checksums for all mobile applications. Share direct single-APK links easily with anyone.
+      </p>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-number" id="statTotalApps">5</div>
+        <div class="stat-label">Mobile Applications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statTotalDownloads">13,250+</div>
+        <div class="stat-label">Total Downloads</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statLastUpdate">Today</div>
+        <div class="stat-label">Latest Release</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="color: var(--accent-emerald);">100%</div>
+        <div class="stat-label">Ad-Free & Safe</div>
+      </div>
+    </section>
+
+    <!-- Controls & Filters -->
+    <section class="controls-wrapper">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search applications by name, tag, or feature..." />
+      </div>
+      <div class="filter-pills" id="categoryFilters">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- App Cards Grid -->
+    <section>
+      <div class="app-grid" id="appGrid">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Single APK View & Share Modal Overlay -->
+  <div class="modal-overlay" id="singleApkModal">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeSingleApkModal()">&times;</button>
+      <div id="modalContent">
+        <!-- Content injected dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Mobile Application Releases Hub. Developed by <strong>Yihun Shekuri</strong> & <strong>Yeabsira Yonas</strong>.</p>
+      <p style="margin-top: 8px;">
+        <a href="./README.md">View Repository Matrix</a> • 
+        <a href="./data/apps.json" target="_blank">Raw JSON Catalog</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
