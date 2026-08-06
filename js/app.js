@@ -57,6 +57,7 @@ async function loadCatalogData() {
     renderCategoryFilters(catalogData.apps);
     renderAppGrid(catalogData.apps);
     renderBeautifiedJsonView(catalogData);
+    loadReadmeMarkdown();
   } else {
     document.getElementById('appGrid').innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; color: #ef4444; padding: 40px;">
@@ -125,7 +126,7 @@ function switchViewTab(view) {
   readmeSection.style.display = view === 'readme' ? 'block' : 'none';
   jsonSection.style.display = view === 'json' ? 'block' : 'none';
 
-  if (view === 'readme' && !readmeSection.getAttribute('data-loaded')) {
+  if (view === 'readme') {
     loadReadmeMarkdown();
   }
 }
@@ -178,19 +179,30 @@ function renderAppGrid(apps) {
 
 async function loadReadmeMarkdown() {
   const container = document.getElementById('readmeContent');
+  if (!container) return;
+
+  let mdText = "";
+  if (window.README_MARKDOWN) {
+    mdText = window.README_MARKDOWN;
+  }
+
   try {
     const res = await fetch('./README.md');
-    if (!res.ok) throw new Error('README fetch failed');
-    const mdText = await res.text();
-    
+    if (res.ok) {
+      mdText = await res.text();
+    }
+  } catch (err) {
+    console.log('Serving README from bundled script fallback.');
+  }
+
+  if (mdText) {
     if (window.marked) {
       container.innerHTML = window.marked.parse(mdText);
     } else {
-      container.innerHTML = `<pre style="white-space: pre-wrap; font-family: monospace;">${escapeHtml(mdText)}</pre>`;
+      container.innerHTML = `<pre style="white-space: pre-wrap; font-family: monospace; color: var(--text-muted);">${escapeHtml(mdText)}</pre>`;
     }
-    document.getElementById('readmeSection').setAttribute('data-loaded', 'true');
-  } catch (err) {
-    container.innerHTML = `<p style="color:var(--text-muted);">View repository details in <a href="./README.md">README.md</a>.</p>`;
+  } else {
+    container.innerHTML = `<p style="color:var(--text-muted);">README markdown unavailable.</p>`;
   }
 }
 
