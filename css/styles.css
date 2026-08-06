@@ -104,33 +104,40 @@ header {
   z-index: 100;
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
-  padding: 14px 0;
+  padding: 12px 0;
 }
 
 .nav-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
   color: var(--text-main);
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   letter-spacing: -0.02em;
 }
 
+/* Prominent Recognized Brand Logo */
 .brand-icon-img {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-pill);
   object-fit: cover;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1.5px solid rgba(212, 160, 23, 0.6);
+  box-shadow: 0 0 12px rgba(212, 160, 23, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.brand-logo:hover .brand-icon-img {
+  transform: scale(1.05);
 }
 
 .nav-controls {
@@ -159,6 +166,7 @@ header {
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 
 .tab-btn:hover, .tab-btn.active {
@@ -182,6 +190,7 @@ header {
   color: var(--text-main);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
+  min-height: 38px;
 }
 
 .btn:hover {
@@ -216,7 +225,7 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 12px;
+  padding: 4px 14px;
   border-radius: var(--radius-pill);
   background: var(--badge-bg);
   color: var(--text-muted);
@@ -298,6 +307,7 @@ header {
   font-size: 0.88rem;
   outline: none;
   transition: border-color 0.2s ease;
+  min-height: 42px;
 }
 
 .search-field input:focus {
@@ -318,6 +328,8 @@ header {
   display: flex;
   gap: 6px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
 }
 
 .filter-chip {
@@ -466,6 +478,8 @@ header {
   border-collapse: collapse;
   margin: 16px 0;
   font-size: 0.88rem;
+  overflow-x: auto;
+  display: block;
 }
 
 .readme-view-box th, .readme-view-box td {
@@ -616,18 +630,99 @@ footer a {
   cursor: pointer;
 }
 
-@media (max-width: 640px) {
+/* Full Responsive Mobile Media Queries */
+@media (max-width: 768px) {
+  .nav-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    justify-content: flex-start;
+  }
+
+  .view-tabs {
+    width: 100%;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+  }
+
+  .nav-controls {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-controls .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .hero-title {
-    font-size: 1.8rem;
-  }
+
   .controls-bar {
     flex-direction: column;
     align-items: stretch;
   }
+
   .search-field {
     max-width: 100%;
+  }
+
+  .filter-group {
+    width: 100%;
+    padding-bottom: 6px;
+  }
+
+  .app-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-card {
+    padding: 18px;
+  }
+
+  .app-card-actions {
+    flex-direction: row;
+  }
+
+  .readme-view-box {
+    padding: 20px 16px;
+  }
+
+  .modal-box {
+    width: 94vw;
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .stat-val {
+    font-size: 1.2rem;
+  }
+
+  .app-card-actions {
+    flex-direction: column;
+  }
+
+  .app-card-actions .btn {
+    width: 100%;
   }
 }
