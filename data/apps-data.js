@@ -245,18 +245,18 @@ window.APP_CATALOG = {
           "title": "Release v2.0.0",
           "apkFileName": "appsnap-v2.0.0.apk",
           "apkPath": "apps/appsnap/v2.0.0/appsnap-v2.0.0.apk",
-          "fileSize": "51.0 MB",
+          "fileSize": "51.1 MB",
           "minAndroid": "Android 6.0 (API 23)+",
           "architecture": "Universal",
-          "sha256": "6b425c9f5c663262583bf1493d4e033567dc003ca7ede0ff88d38b7a9108a5ae",
+          "sha256": "097e519862c4fc5af30094463c5bcb5a0bc8c54e2f878135c6846f16261ff5ef",
           "changelog": [
-            "Initial Native Android Mobile Release with Technical Minimalism UI",
-            "100% Offline Local-First UI State Crawler & Screenshot Staging Engine",
-            "5 High-Resolution Mockup Frames (Titanium Bezel, Clay Minimal, Portfolio Card, Studio Dark, Raw)",
-            "Clean 9:41 AM Demo Status Bar Replacement Engine",
-            "One-Tap Offline ZIP Packaging with manifest.json and responsive contact_sheet.html",
-            "Native Android Share Sheet integration & Local Notifications on export completion",
-            "Light/Bright Mode default with Dark Mode toggle and custom developer icons"
+            "Removed all mock/dummy data in favor of live on-device app detection",
+            "Real Android PackageManager integration querying installed apps and native icon drawables",
+            "Real device screenshot scanner automatically importing phone captures into staging portfolio",
+            "Target app launcher directly opening installed apps for live interactive captures",
+            "Safe area padding refinement placing modals and action buttons above Android system navigation bar",
+            "Offline ZIP packaging with manifest.json and responsive contact_sheet.html",
+            "Light/Bright mode default with Dark Mode toggle and custom vector viewfinder+terminal navigation icon"
           ]
         }
       ]
