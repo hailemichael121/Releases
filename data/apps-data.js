@@ -245,18 +245,15 @@ window.APP_CATALOG = {
           "title": "Release v2.0.0",
           "apkFileName": "appsnap-v2.0.0.apk",
           "apkPath": "apps/appsnap/v2.0.0/appsnap-v2.0.0.apk",
-          "fileSize": "51.1 MB",
+          "fileSize": "51.0 MB",
           "minAndroid": "Android 6.0 (API 23)+",
           "architecture": "Universal",
-          "sha256": "097e519862c4fc5af30094463c5bcb5a0bc8c54e2f878135c6846f16261ff5ef",
+          "sha256": "31eb32541d423a21588a779f729686f87a045d4a116e922c966345b291a5575f",
           "changelog": [
-            "Removed all mock/dummy data in favor of live on-device app detection",
-            "Real Android PackageManager integration querying installed apps and native icon drawables",
-            "Real device screenshot scanner automatically importing phone captures into staging portfolio",
-            "Target app launcher directly opening installed apps for live interactive captures",
-            "Safe area padding refinement placing modals and action buttons above Android system navigation bar",
-            "Offline ZIP packaging with manifest.json and responsive contact_sheet.html",
-            "Light/Bright mode default with Dark Mode toggle and custom vector viewfinder+terminal navigation icon"
+            "Strictly real screenshot capture & sync",
+            "Removed synthetic vector mockups",
+            "Multi-screenshot gallery & storage importer",
+            "Clean lightweight dashboard with zero sparkle icons"
           ]
         }
       ]
