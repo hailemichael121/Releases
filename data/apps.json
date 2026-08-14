@@ -3,7 +3,7 @@
     "title": "Mobile App Releases Hub",
     "owner": "Yihun Shekuri",
     "description": "Centralized release repository for mobile application Android builds (APKs), release notes, version histories, and direct download links.",
-    "updatedAt": "2026-08-06"
+    "updatedAt": "2026-08-14"
   },
   "apps": [
     {
@@ -14,8 +14,16 @@
       "iconUrl": "assets/icons/mezgebe-sbhat.png",
       "brandColor": "#3b82f6",
       "badge": "Stable",
-      "authors": ["Yihun Shekuri", "Yeabsira Yonas"],
-      "techStack": ["Flutter", "Dart", "PDF Viewer", "Audio Services"],
+      "authors": [
+        "Yihun Shekuri",
+        "Yeabsira Yonas"
+      ],
+      "techStack": [
+        "Flutter",
+        "Dart",
+        "PDF Viewer",
+        "Audio Services"
+      ],
       "summary": "Mezgebe Sbhat supports the learning and preservation of Ethiopian Orthodox Tewahedo Church hymns by combining audio recordings with written PDF texts.",
       "description": "Mezgebe Sbhat integrates PDF versions of hymns and prayers alongside audio playback, making it easier for deacons, students, choir members, and believers to follow, study, and memorize liturgical content offline without ads.",
       "latestVersion": "v1.0.0",
@@ -49,8 +57,16 @@
       "iconUrl": "assets/icons/mezgebe-zema.png",
       "brandColor": "#8b5cf6",
       "badge": "Stable",
-      "authors": ["Yihun Shekuri", "Yeabsira Yonas"],
-      "techStack": ["React Native", "TypeScript", "Track Player", "SQLite"],
+      "authors": [
+        "Yihun Shekuri",
+        "Yeabsira Yonas"
+      ],
+      "techStack": [
+        "React Native",
+        "TypeScript",
+        "Track Player",
+        "SQLite"
+      ],
       "summary": "Mezgebe Zema helps users discover, organize, and play spiritual audio by church calendar months, days, and collections.",
       "description": "Browse liturgical audio by Ethiopian month (Meskerem, Tikimt, etc.), day, or repertoire (Aquaquam, Dgua, Tsome Dgua, Wereb). Create custom playlists, heart favorites, download for offline listening, and control playback from lock screen and background widget.",
       "latestVersion": "v1.2.0",
@@ -84,8 +100,15 @@
       "iconUrl": "assets/icons/jan-note.png",
       "brandColor": "#10b981",
       "badge": "Build",
-      "authors": ["Yihun Shekuri"],
-      "techStack": ["Flutter", "Riverpod", "Hive", "Flutter Quill"],
+      "authors": [
+        "Yihun Shekuri"
+      ],
+      "techStack": [
+        "Flutter",
+        "Riverpod",
+        "Hive",
+        "Flutter Quill"
+      ],
       "summary": "A privacy-focused offline notebook specifically designed for Orthodox Gubae study and personal note organization.",
       "description": "Jan Note offers rich text editing with automatic verse chip detection, tag management, reading mode viewer, background selector, autosave, and spiritual insight graph placeholder.",
       "latestVersion": "v1.0.0",
@@ -119,8 +142,14 @@
       "iconUrl": "assets/icons/jan-alarm.png",
       "brandColor": "#f59e0b",
       "badge": "Build",
-      "authors": ["Yihun Shekuri"],
-      "techStack": ["React Native", "TypeScript", "Push Notifications"],
+      "authors": [
+        "Yihun Shekuri"
+      ],
+      "techStack": [
+        "React Native",
+        "TypeScript",
+        "Push Notifications"
+      ],
       "summary": "Customizable alarm app tuned for canonical prayer hours, service reminders, and morning study alarms.",
       "description": "Set recurring prayer alarms, gentle wake-up tones, liturgical calendar notifications, and custom snooze settings with high reliability.",
       "latestVersion": "v1.0.0",
@@ -153,8 +182,16 @@
       "iconUrl": "assets/icons/mekanat.png",
       "brandColor": "#d4a017",
       "badge": "Build",
-      "authors": ["Yihun Shekuri"],
-      "techStack": ["Flutter", "Dart", "OpenStreetMap", "Firebase", "Firestore"],
+      "authors": [
+        "Yihun Shekuri"
+      ],
+      "techStack": [
+        "Flutter",
+        "Dart",
+        "OpenStreetMap",
+        "Firebase",
+        "Firestore"
+      ],
       "summary": "Mekanat maps Ethiopian Orthodox churches, holy sites, daily prayers, 81-book Bible, and liturgical feast calendars across Ethiopia.",
       "description": "Mekanat provides interactive map navigation for Ethiopian Orthodox Tewahedo Church locations, parish contacts, church history, daily canonical prayers, 81-book Orthodox Bible integration, and feast day calendar events.",
       "latestVersion": "v1.0.0",
@@ -175,6 +212,51 @@
             "Ethiopian Orthodox Bible 81-book search and reader",
             "Daily canonical prayer hour schedule",
             "Feast day events and liturgical calendar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "appsnap",
+      "name": "AppSnap",
+      "tagline": "Mobile App Screenshot Studio & Portfolio Exporter",
+      "category": "Developer Tools & Productivity",
+      "iconUrl": "assets/icons/appsnap.png",
+      "brandColor": "#10b981",
+      "badge": "Stable",
+      "authors": [
+        "Yihun Shekuri"
+      ],
+      "techStack": [
+        "Flutter",
+        "Dart",
+        "Canvas Engine",
+        "Archive & ZIP",
+        "Local Notifications"
+      ],
+      "summary": "Automated mobile screenshot studio, UI crawler, and portfolio asset generator with mockup framing.",
+      "description": "AppSnap transforms mobile app screenshots into polished portfolio artifacts. Features local-first UI state crawling, 5 mockup frames (Titanium, Clay, Portfolio Card, Studio Dark, Raw), Clean 9:41 AM Demo Status Bar replacement, and one-tap offline ZIP packaging with manifest.json and responsive contact_sheet.html.",
+      "latestVersion": "v2.0.0",
+      "latestReleaseDate": "2026-08-14",
+      "releases": [
+        {
+          "version": "v2.0.0",
+          "releaseDate": "2026-08-14",
+          "title": "Release v2.0.0",
+          "apkFileName": "appsnap-v2.0.0.apk",
+          "apkPath": "apps/appsnap/v2.0.0/appsnap-v2.0.0.apk",
+          "fileSize": "51.0 MB",
+          "minAndroid": "Android 6.0 (API 23)+",
+          "architecture": "Universal",
+          "sha256": "6b425c9f5c663262583bf1493d4e033567dc003ca7ede0ff88d38b7a9108a5ae",
+          "changelog": [
+            "Initial Native Android Mobile Release with Technical Minimalism UI",
+            "100% Offline Local-First UI State Crawler & Screenshot Staging Engine",
+            "5 High-Resolution Mockup Frames (Titanium Bezel, Clay Minimal, Portfolio Card, Studio Dark, Raw)",
+            "Clean 9:41 AM Demo Status Bar Replacement Engine",
+            "One-Tap Offline ZIP Packaging with manifest.json and responsive contact_sheet.html",
+            "Native Android Share Sheet integration & Local Notifications on export completion",
+            "Light/Bright Mode default with Dark Mode toggle and custom developer icons"
           ]
         }
       ]
