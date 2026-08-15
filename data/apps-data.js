@@ -236,9 +236,27 @@ window.APP_CATALOG = {
       ],
       "summary": "Automated mobile screenshot studio, UI crawler, and portfolio asset generator with mockup framing.",
       "description": "AppSnap transforms mobile app screenshots into polished portfolio artifacts. Features local-first UI state crawling, 5 mockup frames (Titanium, Clay, Portfolio Card, Studio Dark, Raw), Clean 9:41 AM Demo Status Bar replacement, and one-tap offline ZIP packaging with manifest.json and responsive contact_sheet.html.",
-      "latestVersion": "v2.0.0",
-      "latestReleaseDate": "2026-08-14",
+      "latestVersion": "v2.1.0",
+      "latestReleaseDate": "2026-08-15",
       "releases": [
+        {
+          "version": "v2.1.0",
+          "releaseDate": "2026-08-15",
+          "title": "Release v2.1.0",
+          "apkFileName": "appsnap-v2.1.0.apk",
+          "apkPath": "apps/appsnap/v2.1.0/appsnap-v2.1.0.apk",
+          "fileSize": "20.5 MB",
+          "minAndroid": "Android 8.0 (API 26)+",
+          "architecture": "ARM64 & Universal",
+          "sha256": "25968c450d6c3aa36cf0d8ad18f0e41cd6c0ad0c2d48e5bd16535bb8993c08a2",
+          "changelog": [
+            "Rich mobile mockup frame styles (iPhone Titanium, Pixel Pro, Clay, Studio Onyx, Portfolio Card, Midnight Cyber)",
+            "Quick drop and reject controls on scan and review screens",
+            "Halved splash logo size for balanced startup branding",
+            "Native floating shutter with auto-ghost 75ms fade",
+            "Direct save to device (Pictures & Downloads) and social sharing"
+          ]
+        },
         {
           "version": "v2.0.0",
           "releaseDate": "2026-08-14",

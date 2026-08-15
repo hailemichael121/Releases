@@ -24,6 +24,7 @@ In addition to browsing this repository directly, an interactive web showcase is
 
 | App Name | Category | Version | Date | File Size | Direct Download | Share Link |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **AppSnap** | Developer Tools & Studio | `v2.1.0` | 2026-08-15 | 20.5 MB | [Download APK](./apps/appsnap/v2.1.0/appsnap-v2.1.0.apk) | [`#app=appsnap`](./index.html#app=appsnap) |
 | **Mezgebe Sbhat** | Spiritual & Education | `v1.0.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/mezgebe-sbhat/v1.0.0/mezgebe-sbhat-v1.0.0.apk) | [`#app=mezgebe-sbhat`](./index.html#app=mezgebe-sbhat) |
 | **Mezgebe Zema** | Spiritual & Education | `v1.2.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/mezgebe-zema/v1.2.0/mezgebe-zema-v1.2.0.apk) | [`#app=mezgebe-zema`](./index.html#app=mezgebe-zema) |
 | **Jan Note** | Productivity & Study | `v1.0.0` | 2026-08-06 | 91.2 MB | [Download APK](./apps/jan-note/v1.0.0/jan-note-v1.0.0.apk) | [`#app=jan-note`](./index.html#app=jan-note) |
