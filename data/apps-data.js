@@ -245,15 +245,16 @@ window.APP_CATALOG = {
           "title": "Release v2.0.0",
           "apkFileName": "appsnap-v2.0.0.apk",
           "apkPath": "apps/appsnap/v2.0.0/appsnap-v2.0.0.apk",
-          "fileSize": "51.0 MB",
-          "minAndroid": "Android 6.0 (API 23)+",
-          "architecture": "Universal",
-          "sha256": "31eb32541d423a21588a779f729686f87a045d4a116e922c966345b291a5575f",
+          "fileSize": "20.4 MB",
+          "minAndroid": "Android 8.0 (API 26)+",
+          "architecture": "ARM64 & Universal",
+          "sha256": "e87f4d837fdb4c37ec14cda9a9653fd1821acd9943e74dcbcdb5578a42ffb63b",
           "changelog": [
-            "Strictly real screenshot capture & sync",
-            "Removed synthetic vector mockups",
-            "Multi-screenshot gallery & storage importer",
-            "Clean lightweight dashboard with zero sparkle icons"
+            "Native floating camera shutter with auto-ghost capture",
+            "Ultra-lightweight minified binary (62%+ size reduction)",
+            "Strictly clean, unadulterated frameless screenshots",
+            "Multi-image personal gallery import as-is",
+            "Direct save to device (Pictures & Downloads) and social sharing"
           ]
         }
       ]

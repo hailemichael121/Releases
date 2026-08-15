@@ -1,0 +1,3 @@
+e87f4d837fdb4c37ec14cda9a9653fd1821acd9943e74dcbcdb5578a42ffb63b  appsnap-v2.0.0.apk
+e87f4d837fdb4c37ec14cda9a9653fd1821acd9943e74dcbcdb5578a42ffb63b  appsnap-v2.0.0-arm64-v8a.apk
+9cac8faf6ba859727a382c54965703a72e9214bb00a338a4cb162f58b84e227a  appsnap-v2.0.0-armeabi-v7a.apk
