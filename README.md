@@ -28,7 +28,7 @@ In addition to browsing this repository directly, an interactive web showcase is
 | **AppSnap** | Developer Tools & Studio | `v2.1.0` | 2026-08-15 | 20.5 MB | [Download APK](./apps/appsnap/v2.1.0/appsnap-v2.1.0.apk) | [`#app=appsnap`](./index.html#app=appsnap) |
 | **Mezgebe Sbhat** | Spiritual & Education | `v1.0.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/mezgebe-sbhat/v1.0.0/mezgebe-sbhat-v1.0.0.apk) | [`#app=mezgebe-sbhat`](./index.html#app=mezgebe-sbhat) |
 | **Mezgebe Zema** | Spiritual & Education | `v1.2.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/mezgebe-zema/v1.2.0/mezgebe-zema-v1.2.0.apk) | [`#app=mezgebe-zema`](./index.html#app=mezgebe-zema) |
-| **Jan Note** | Productivity & Study | `v1.0.0` | 2026-08-06 | 91.2 MB | [Download APK](./apps/jan-note/v1.0.0/jan-note-v1.0.0.apk) | [`#app=jan-note`](./index.html#app=jan-note) |
+| **Jan Note** | Productivity & Study | `v1.0.0` | 2026-08-15 | 60.2 MB | [Download APK](./apps/jan-note/v1.0.0/jan-note-v1.0.0.apk) | [`#app=jan-note`](./index.html#app=jan-note) |
 | **Jan Alarm** | Utilities | `v1.0.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/jan-alarm/v1.0.0/jan-alarm-v1.0.0.apk) | [`#app=jan-alarm`](./index.html#app=jan-alarm) |
 | **Mekanat** | Spiritual & Mapping | `v1.0.0` | 2026-08-06 | 19.4 MB | [Download APK](./apps/mekanat/v1.0.0/mekanat-v1.0.0.apk) | [`#app=mekanat`](./index.html#app=mekanat) |
 
@@ -103,7 +103,7 @@ A privacy-focused offline notebook designed for Orthodox Gubae study, verse tagg
   - Distraction-free reading mode viewer.
   - First-run tutorial flow persisted in local Hive DB.
 - **Developer**: Yihun Shekuri
-- **Checksum (SHA256)**: `648fc3bf0c30e9d201a6432a661dc481067a45b5ec7531fd4aad98ca9eb70141`
+- **Checksum (SHA256)**: `c1e2096c1fadb6edd020093fa52fdd71c0930066dd041bb6890ae8ef43ec5c36`
 
 ---
 

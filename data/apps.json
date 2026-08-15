@@ -112,18 +112,18 @@
       "summary": "A privacy-focused offline notebook specifically designed for Orthodox Gubae study and personal note organization.",
       "description": "Jan Note offers rich text editing with automatic verse chip detection, tag management, reading mode viewer, background selector, autosave, and spiritual insight graph placeholder.",
       "latestVersion": "v1.0.0",
-      "latestReleaseDate": "2026-08-06",
+      "latestReleaseDate": "2026-08-15",
       "releases": [
         {
           "version": "v1.0.0",
-          "releaseDate": "2026-08-06",
-          "title": "Initial Build",
+          "releaseDate": "2026-08-15",
+          "title": "Release Build v1.0.0",
           "apkFileName": "jan-note-v1.0.0.apk",
           "apkPath": "apps/jan-note/v1.0.0/jan-note-v1.0.0.apk",
-          "fileSize": "91.2 MB",
+          "fileSize": "60.2 MB",
           "minAndroid": "Android 6.0 (API 23)+",
           "architecture": "Universal (arm64-v8a, armeabi-v7a, x86_64)",
-          "sha256": "648fc3bf0c30e9d201a6432a661dc481067a45b5ec7531fd4aad98ca9eb70141",
+          "sha256": "c1e2096c1fadb6edd020093fa52fdd71c0930066dd041bb6890ae8ef43ec5c36",
           "changelog": [
             "Splash screen with calm fade transitions",
             "Interactive onboarding tutorial flow persisted in Hive DB",
