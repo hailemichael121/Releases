@@ -1,6 +1,6 @@
 # Mobile Application Releases Hub
 
-[![Releases](https://img.shields.io/badge/Mobile_Apps-5_Active-blue?style=flat-square&logo=android)](./data/apps.json)
+[![Releases](https://img.shields.io/badge/Mobile_Apps-6_Active-blue?style=flat-square&logo=android)](./data/apps.json)
 [![Platform](https://img.shields.io/badge/Platform-Android_APK-green?style=flat-square&logo=android)](./apps)
 [![License](https://img.shields.io/badge/License-MIT-purple?style=flat-square)](./LICENSE)
 
@@ -15,7 +15,8 @@ In addition to browsing this repository directly, an interactive web showcase is
 - **Live Web Portal**: Open [`index.html`](./index.html) in your browser.
 - **Single APK Sharing**: Every application build has a unique deep link format. Sharing a single-APK link opens the exact release card with direct download buttons.
   - *Example Share Link Format*:  
-    `https://yihunshekuri.github.io/Releases/#apk=jan-note-v1.0.0`  
+    `https://yihunshekuri.github.io/Releases/#apk=appsnap-v2.1.0`  
+    `https://yihunshekuri.github.io/Releases/#app=appsnap`  
     `https://yihunshekuri.github.io/Releases/#app=mekanat`
 
 ---
@@ -35,7 +36,27 @@ In addition to browsing this repository directly, an interactive web showcase is
 
 ## Applications & Release Details
 
-### 1. Mezgebe Sbhat (`mezgebe-sbhat`)
+### 1. AppSnap (`appsnap`)
+> Native Android Screenshot Studio & Automated Portfolio Package Generator
+
+AppSnap transforms mobile app screenshots into polished portfolio artifacts. Features a live floating camera shutter button that hovers over running apps with an auto-ghost mechanism (75ms fade), 7 mobile frame styles (*Raw Original*, *iPhone Titanium with Dynamic Island*, *Google Pixel Pro*, *Clay Minimalist*, *Studio Onyx Dark*, *Portfolio Card*, *Midnight Cyber*), multi-image gallery import, interactive zoom preview, direct device save to `Pictures/` & `Download/`, and one-tap offline ZIP packaging with `manifest.json` and responsive `contact_sheet.html`.
+
+- **Folder Path**: [`apps/appsnap/`](./apps/appsnap/)
+- **Brand Color**: `#10b981` (Emerald Green)
+- **Latest Version**: `v2.1.0` (2026-08-15)
+- **Key Features**:
+  - Native floating camera shutter overlay (`ScreenCaptureService.kt`) with auto-ghost capture.
+  - Multi-image personal gallery import as-is with original uncompressed resolution.
+  - Interactive full-resolution preview dialog with pinch-to-zoom, pan, rename, and card-level instant drop.
+  - Direct 1-tap save for single images to `Pictures/AppSnap/` and ZIP packages to `Download/AppSnap/`.
+  - Self-contained offline ZIP engine with HTML contact sheet and JSON manifest.
+  - 62%+ lightweight minified binary (20.5 MB).
+- **Developer**: Yihun Shekuri
+- **Checksum (SHA256)**: `25968c450d6c3aa36cf0d8ad18f0e41cd6c0ad0c2d48e5bd16535bb8993c08a2`
+
+---
+
+### 2. Mezgebe Sbhat (`mezgebe-sbhat`)
 > Ethiopian Orthodox Church Hymns & Prayers with Audio and PDF Integration
 
 Mezgebe Sbhat supports the learning and preservation of Ethiopian Orthodox Tewahedo Church hymns by combining audio recordings with corresponding written PDF texts.
@@ -52,7 +73,7 @@ Mezgebe Sbhat supports the learning and preservation of Ethiopian Orthodox Tewah
 
 ---
 
-### 2. Mezgebe Zema (`mezgebe-zema`)
+### 3. Mezgebe Zema (`mezgebe-zema`)
 > Ethiopian Orthodox Church Liturgical Audio Library & Offline Player
 
 Mezgebe Zema helps users discover, organize, and play spiritual audio by church calendar months, days, and collections (Aquaquam, Dgua, Tsome Dgua, Wereb).
@@ -69,7 +90,7 @@ Mezgebe Zema helps users discover, organize, and play spiritual audio by church 
 
 ---
 
-### 3. Jan Note (`jan-note`)
+### 4. Jan Note (`jan-note`)
 > Offline-First Spiritual Notebook & Rich Text Editor for Gubae Study
 
 A privacy-focused offline notebook designed for Orthodox Gubae study, verse tagging, and rich note organization.
@@ -86,7 +107,7 @@ A privacy-focused offline notebook designed for Orthodox Gubae study, verse tagg
 
 ---
 
-### 4. Jan Alarm (`jan-alarm`)
+### 5. Jan Alarm (`jan-alarm`)
 > Smart Spiritual Alarm & Daily Prayer Schedule Reminder
 
 Customizable alarm application tuned for canonical prayer hours, service reminders, and morning study alarms.
@@ -99,7 +120,7 @@ Customizable alarm application tuned for canonical prayer hours, service reminde
 
 ---
 
-### 5. Mekanat (`mekanat`)
+### 6. Mekanat (`mekanat`)
 > Ethiopian Orthodox Church Mapping & Liturgical Companion
 
 Mekanat provides interactive map navigation for Ethiopian Orthodox Tewahedo Church locations, parish contacts, church history, daily canonical prayers, 81-book Orthodox Bible integration, and feast day calendar events.
@@ -118,19 +139,13 @@ You can automatically register a new build APK using the included CLI tool [`scr
 
 ```bash
 python3 scripts/add_release.py \
-  --app mekanat \
-  --version v1.1.0 \
+  --app appsnap \
+  --version v2.1.0 \
   --apk /path/to/app-release.apk \
   --icon /path/to/icon.png \
-  --brand-color "#d4a017" \
-  --changelog "Updated church geolocation markers"
+  --brand-color "#10b981" \
+  --changelog "Added rich mobile frames and drop controls"
 ```
-
-This script automatically:
-1. Creates the target directory `apps/<app_id>/<version>/`
-2. Copies the APK binary to the release location.
-3. Computes the SHA256 checksum and file size.
-4. Updates [`data/apps.json`](./data/apps.json) and [`data/apps-data.js`](./data/apps-data.js).
 
 ---
 
